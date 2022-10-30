@@ -1,0 +1,22 @@
+/* I assume that for most of the photocells: R(light) = 500/ Lux (KOhms)
+On the other hand, Vcc x R(light) = Vo x (R(light) + R)
+where,
+Vcc = 5V input of Arduino
+Vo = Arduino analogue lecture in Volts (ej., a lecture of 412 is equal to 2.01171875 volts, as previously explained Mike in the previous reply to this post)
+R = 3.3 KOhms (located in the circuit in the way to the LDR)
+
+Then, following the equation proposed here: Measure Light Intensity using Light Dependent Resistor (LDR), the Light measurement (in lux units) are obtained from this equation:
+Lux = (2500/Vo - 500)/3.3 */
+
+
+
+float LDR , i
+
+float Read_LDR(uint16_t AN1RES)	
+{
+AN1RES =0;  //reset read
+AN1RES = ADC_Read(1);  // Read The ADC
+ i=AN1RES/204.8;
+  LDR = (i*10/(5-i));
+ return LDR 
+}
